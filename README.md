@@ -1,6 +1,7 @@
 AFSQLManager
 ==============
 
+[![Build Status](https://travis-ci.org/AlvaroFranco/AFSQLManager.svg?branch=v1.0)](https://travis-ci.org/AlvaroFranco/AFSQLManager)
 ![alt text](https://cocoapod-badges.herokuapp.com/v/AFSQLManager/badge.png "")
 ![alt text](https://cocoapod-badges.herokuapp.com/p/AFSQLManager/badge.png "")
 ![alt text](https://camo.githubusercontent.com/f513623dcee61532125032bbf1ddffda06ba17c7/68747470733a2f2f676f2d736869656c64732e6865726f6b756170702e636f6d2f6c6963656e73652d4d49542d626c75652e706e67 "")
