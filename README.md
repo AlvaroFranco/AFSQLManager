@@ -3,6 +3,8 @@ AFSQLManager
 
 SQL and SQLite database manage on iOS made easy. Create, open, rename and delete databases with AFSQLManager, a block-driven iOS SQL and SQLite manager class. Perform queries never has been that easy!
 
+![alt text](https://raw.github.com/AlvaroFranco/AFSQLManager/master/preview.gif "Preview")
+
 ##Installation
 
 AFSQLManager is available on CocoaPods so you can get it by adding this line to your Podfile:
