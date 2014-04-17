@@ -10,23 +10,10 @@
 
 @interface AFSQLManager ()
 
-@property (nonatomic, strong) NSString *dbPath;
-@property (nonatomic, strong) NSString *docsPath;
 @property (nonatomic, strong) NSDictionary *currentDbInfo;
 @end
 
 @implementation AFSQLManager
-
--(id)init {
-    
-    self = [super init];
-    
-    if (self) {
-        _docsPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-    }
-    
-    return self;
-}
 
 +(instancetype)sharedManager {
     
@@ -42,8 +29,7 @@
 -(void)createDatabaseWithName:(NSString *)name openInmediately:(BOOL)open withStatusBlock:(statusBlock)status {
     
     NSError *error = nil;
-    _dbPath = [_docsPath stringByAppendingPathComponent:name];
-    [[NSData data]writeToFile:_dbPath options:NSDataWritingAtomic error:&error];
+    [[NSData data]writeToFile:[[NSBundle mainBundle]pathForResource:[[name lastPathComponent]stringByDeletingPathExtension] ofType:[name pathExtension]] options:NSDataWritingAtomic error:&error];
     
     if (!error) {
         if (open) {
@@ -63,10 +49,14 @@
 
 -(void)openLocalDatabaseWithName:(NSString *)name andStatusBlock:(statusBlock)status {
     
-	if (sqlite3_open([[_docsPath stringByAppendingPathComponent:name] UTF8String], &_database) == SQLITE_OK) {
-        status(YES, nil);
-    } else {
+    NSString *path = [[NSBundle mainBundle]pathForResource:[[name lastPathComponent]stringByDeletingPathExtension] ofType:[name pathExtension]];
+
+    if (sqlite3_open([path UTF8String], &_database) != SQLITE_OK) {
+        NSLog(@"Failed to open database!");
         status(NO, nil);
+    } else {
+        NSLog(@"Database opened properly");
+        status(YES, nil);
     }
 }
 
@@ -75,7 +65,7 @@
     if (sqlite3_close(_database) == SQLITE_OK) {
         status(YES, nil);
     } else {
-        status(NO, nil);
+        
     }
 }
 
@@ -87,7 +77,7 @@
     
     NSError *error;
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    [fileManager moveItemAtPath:[_docsPath stringByAppendingPathComponent:originalName] toPath:[_docsPath stringByAppendingPathComponent:newName] error:&error];
+    [fileManager moveItemAtPath:[[NSBundle mainBundle]pathForResource:[[originalName lastPathComponent]stringByDeletingPathExtension] ofType:[originalName pathExtension]] toPath:[[NSBundle mainBundle]pathForResource:[[newName lastPathComponent]stringByDeletingPathExtension] ofType:[newName pathExtension]] error:&error];
     
     if ([[_currentDbInfo objectForKey:@"name"]isEqualToString:originalName] && !error) {
         [self openLocalDatabaseWithName:newName andStatusBlock:nil];
@@ -107,7 +97,7 @@
     
     NSError *error;
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    [fileManager removeItemAtPath:[_docsPath stringByAppendingPathComponent:name] error:&error];
+    [fileManager removeItemAtPath:[[NSBundle mainBundle]pathForResource:[[name lastPathComponent]stringByDeletingPathExtension] ofType:[name pathExtension]] error:&error];
     
     if (!error) {
         status(YES, nil);
@@ -119,29 +109,26 @@
 }
 
 -(void)performQuery:(NSString *)query withBlock:(completionBlock)completion {
-    
-    if (_currentDbInfo[@"name"] != [NSNull null]) {
         
-		sqlite3_stmt *compiledStatement;
-        
-		if (sqlite3_prepare_v2(_database, [query cStringUsingEncoding:NSASCIIStringEncoding], -1, &compiledStatement, NULL) == SQLITE_OK) {
+    sqlite3_stmt *statement;
 
-			while(sqlite3_step(compiledStatement) == SQLITE_ROW) {
-                
-                NSMutableArray *row = [NSMutableArray array];
-                
-                for (int i = 0; i < sqlite3_column_count(compiledStatement); i++) {
-                    
-                    [row addObject:[NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement, (i + 1))]];
-                }
-                
-                completion(row, nil);
-			}
-		}
-		sqlite3_finalize(compiledStatement);
-	}
-    
-	sqlite3_close(_database);
+    if (sqlite3_prepare_v2(_database, [query UTF8String], -1, &statement, nil) == SQLITE_OK) {
+        
+        while (sqlite3_step(statement) == SQLITE_ROW) {
+            
+            NSMutableArray *row = [NSMutableArray array];
+            
+            for (int i = 0; i < sqlite3_column_count(statement); i++) {
+                                
+                [row addObject:((char *)sqlite3_column_text(statement, i)) ? [NSString stringWithUTF8String:(char *)sqlite3_column_text(statement, i)] : @""];
+            }
+            
+            completion(row, nil, NO);
+        }
+        
+        sqlite3_finalize(statement);
+        completion(nil, nil, YES);
+    }
 }
 
 @end

@@ -12,7 +12,7 @@
 @interface AFSQLManager : NSObject
 
 typedef void (^statusBlock)(BOOL success, NSError *error);
-typedef void (^completionBlock)(NSArray *row, NSError *error);
+typedef void (^completionBlock)(NSArray *row, NSError *error, BOOL finished);
 
 +(instancetype)sharedManager;
 
