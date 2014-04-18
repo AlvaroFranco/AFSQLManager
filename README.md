@@ -25,7 +25,7 @@ If you don't use CocoaPods, you will have to import these files into your projec
 
 First of all, make sure that you have imported the main class into the class where you are going to play audio.
 
-	#import "AFSQLManager"
+	#import "AFSQLManager.h"
 	
 ###Managing the databases files
 
@@ -48,7 +48,7 @@ You can also choose if the database should be opened once it's created.
 
 If you already have your database imported into your project, start using that database is as simple as use ```-openLocalDatabaseWithName:andStatusBlock:```
 
-	    [[AFSQLManager sharedManager]openLocalDatabaseWithName:@"my-awesome-db.sql" andStatusBlock:^(BOOL success, NSError *error) {
+	[[AFSQLManager sharedManager]openLocalDatabaseWithName:@"my-awesome-db.sql" andStatusBlock:^(BOOL success, NSError *error) {
         
         // Handle the error to check it has been opened properly
     }];
@@ -67,8 +67,8 @@ To rename and delete your database, we have these two methods:
 Queries are performed with the method ```-performQuery:withBlock:```, which is also block-based.
 
 For example, if you want to look for all the items inside a table (which query is ```SELECT * FROM tableName```), the code would be:
-
-	    [[AFSQLManager sharedManager]performQuery:@"SELECT * FROM tableName" withBlock:^(NSArray *row, NSError *error) {
+	
+	[[AFSQLManager sharedManager]performQuery:@"SELECT * FROM tableName" withBlock:^(NSArray *row, NSError *error) {
         
         // Handle each row
     }];
