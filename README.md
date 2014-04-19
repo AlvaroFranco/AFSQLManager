@@ -20,6 +20,8 @@ If you don't use CocoaPods, you will have to import these files into your projec
 
 	AFSQLManager.h
 	AFSQLManager.m
+	
+Also, make sure to import ```libsqlite3.dylib``` library on the Frameworks section!
 
 ##Usage
 
