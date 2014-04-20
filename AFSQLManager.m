@@ -31,17 +31,14 @@
     NSError *error = nil;
     [[NSData data]writeToFile:[[NSBundle mainBundle]pathForResource:[[name lastPathComponent]stringByDeletingPathExtension] ofType:[name pathExtension]] options:NSDataWritingAtomic error:&error];
     
-    if (!error) {
-        if (open) {
-            [self openLocalDatabaseWithName:name andStatusBlock:^(BOOL success, NSError *error) {
-                if (success) {
-                    status(YES, nil);
-                    _currentDbInfo = @{@"name": name};
-                } else {
-                    status(NO, nil);
-                }
-            }];
-        }
+    if (!error && open) {
+        [self openLocalDatabaseWithName:name andStatusBlock:^(BOOL success, NSError *error) {
+            if (success) {
+                _currentDbInfo = @{@"name": name};
+            }
+
+            status(success, error);
+        }];
     } else {
         status(NO, error);
     }
