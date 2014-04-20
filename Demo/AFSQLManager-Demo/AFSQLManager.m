@@ -26,21 +26,22 @@
     return sharedManager;
 }
 
--(void)createDatabaseWithName:(NSString *)name openInmediately:(BOOL)open withStatusBlock:(statusBlock)status {
+-(void)createDatabaseWithName:(NSString *)name openImmediately:(BOOL)openImmediately withStatusBlock:(statusBlock)status {
     
     NSError *error = nil;
     [[NSData data]writeToFile:[[NSBundle mainBundle]pathForResource:[[name lastPathComponent]stringByDeletingPathExtension] ofType:[name pathExtension]] options:NSDataWritingAtomic error:&error];
     
     if (!error) {
-        if (open) {
+        if (openImmediately) {
             [self openLocalDatabaseWithName:name andStatusBlock:^(BOOL success, NSError *error) {
                 if (success) {
-                    status(YES, nil);
                     _currentDbInfo = @{@"name": name};
-                } else {
-                    status(NO, nil);
                 }
+    
+                status(success, error);
             }];
+        } else {
+            status(YES, nil);
         }
     } else {
         status(NO, error);

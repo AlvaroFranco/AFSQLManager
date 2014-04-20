@@ -18,7 +18,7 @@ typedef void (^completionBlock)(NSArray *row, NSError *error, BOOL finished);
 
 @property (nonatomic) sqlite3 *database;
 
--(void)createDatabaseWithName:(NSString *)name openInmediately:(BOOL)open withStatusBlock:(statusBlock)status;
+-(void)createDatabaseWithName:(NSString *)name openImmediately:(BOOL)open withStatusBlock:(statusBlock)status;
 -(void)openLocalDatabaseWithName:(NSString *)name andStatusBlock:(statusBlock)status;
 -(void)closeLocalDatabaseWithName:(NSString *)name andStatusBlock:(statusBlock)status;
 -(void)renameDatabaseWithName:(NSString *)originalName toName:(NSString *)newName andStatus:(statusBlock)status;
