@@ -70,7 +70,7 @@ Queries are performed with the method ```-performQuery:withBlock:```, which is a
 
 For example, if you want to look for all the items inside a table (which query is ```SELECT * FROM tableName```), the code would be:
 	
-	[[AFSQLManager sharedManager]performQuery:@"SELECT * FROM tableName" withBlock:^(NSArray *row, NSError *error) {
+	[[AFSQLManager sharedManager]performQuery:@"SELECT * FROM tableName" withBlock:^(NSArray *row, NSError *error, BOOL finished) {
         
         // Handle each row
     }];
