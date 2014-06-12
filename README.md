@@ -35,7 +35,7 @@ First of all, make sure that you have imported the main class into the class whe
 
 To create a new file, use the method ```-createDatabaseWithName:openImmediately:withStatusBlock:```. Let's say you need to create a database called nyancat.sqlite:
 
-    [[AFSQLManager sharedManager]createDatabaseWithName:@"nyancat.sqlite" openImmediately:YES withStatusBlock:^(BOOL success, NSError *error) {
+    [[AFSQLManager sharedManager]createDatabaseWithName:@"nyancat.sqlite" openInmediately:YES withStatusBlock:^(BOOL success, NSError *error) {
         
         if (success) {
         	// Yeah, database created successfully
