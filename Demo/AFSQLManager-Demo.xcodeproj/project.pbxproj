@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3840A73019661A1500AADB8C /* caja.sql in Resources */ = {isa = PBXBuildFile; fileRef = 3840A72F19661A1500AADB8C /* caja.sql */; };
 		A73B900E18FFF55E009CECF0 /* test.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = A77919F418FFECBA008FFC3A /* test.sqlite */; };
 		A74038AB18FFC523001D71DD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A74038AA18FFC523001D71DD /* Foundation.framework */; };
 		A74038AD18FFC523001D71DD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A74038AC18FFC523001D71DD /* CoreGraphics.framework */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3840A72F19661A1500AADB8C /* caja.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = caja.sql; sourceTree = "<group>"; };
 		A74038A718FFC523001D71DD /* AFSQLManager-Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AFSQLManager-Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A74038AA18FFC523001D71DD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A74038AC18FFC523001D71DD /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -94,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				A77919F418FFECBA008FFC3A /* test.sqlite */,
+				3840A72F19661A1500AADB8C /* caja.sql */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 			files = (
 				A74038C318FFC523001D71DD /* Images.xcassets in Resources */,
 				A74038B518FFC523001D71DD /* InfoPlist.strings in Resources */,
+				3840A73019661A1500AADB8C /* caja.sql in Resources */,
 				A74038BE18FFC523001D71DD /* Main.storyboard in Resources */,
 				A73B900E18FFF55E009CECF0 /* test.sqlite in Resources */,
 			);
