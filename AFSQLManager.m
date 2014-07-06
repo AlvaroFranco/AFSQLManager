@@ -114,7 +114,7 @@
     NSString *fixedQuery = [query stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
     
     sqlite3_stmt *statement;
-
+    
     if (sqlite3_prepare_v2(_database, [fixedQuery UTF8String], -1, &statement, nil) == SQLITE_OK) {
         
         while (sqlite3_step(statement) == SQLITE_ROW) {
@@ -122,11 +122,13 @@
             NSMutableArray *row = [NSMutableArray array];
             
             for (int i = 0; i < sqlite3_column_count(statement); i++) {
-                                
-                [row addObject:((char *)sqlite3_column_text(statement, i)) ? [NSString stringWithUTF8String:(char *)sqlite3_column_text(statement, i)] : @""];
+                
+                [row addObject:((char *)sqlite3_column_text(statement, i)) ? [NSString stringWithUTF8String:(char *)sqlite3_column_text(statement, i)] : [NSNull null]];
             }
             
-            completion(row, nil, NO);
+            if (completion) {
+                completion(row, nil, NO);
+            }
         }
         
         sqlite3_finalize(statement);
