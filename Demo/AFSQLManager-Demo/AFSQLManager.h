@@ -25,5 +25,6 @@ typedef void (^completionBlock)(NSArray *row, NSError *error, BOOL finished);
 -(void)deleteDatabaseWithName:(NSString *)name andStatus:(statusBlock)status;
 
 -(void)performQuery:(NSString *)query withBlock:(completionBlock)completion;
+-(void)performExecute:(NSString *)execute withBlock:(completionBlock)completion;
 
 @end

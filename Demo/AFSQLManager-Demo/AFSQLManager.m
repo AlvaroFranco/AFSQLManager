@@ -136,4 +136,22 @@
     }
 }
 
+-(void)performExecute:(NSString *)execute withBlock:(completionBlock)completion {
+    BOOL finished = NO;
+    
+    NSString *fixedExecute = [execute stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+    
+    sqlite3_stmt *statement;
+    
+    if (sqlite3_prepare_v2(_database, [fixedExecute UTF8String], -1, &statement, nil) == SQLITE_OK) {
+
+        finished = sqlite3_step(statement) == SQLITE_DONE;
+        
+        sqlite3_finalize(statement);
+    }
+    
+    if (completion)
+        completion(nil, nil, finished);
+}
+
 @end

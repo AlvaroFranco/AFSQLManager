@@ -29,6 +29,7 @@
     [super viewDidLoad];
     
     [_button addTarget:self action:@selector(performQuery) forControlEvents:UIControlEventTouchUpInside];
+    [_btnExecute addTarget:self action:@selector(performExecute) forControlEvents:UIControlEventTouchUpInside];
 
     [[AFSQLManager sharedManager]openLocalDatabaseWithName:@"test.sqlite" andStatusBlock:^(BOOL success, NSError *error) {
         if (error) {
@@ -55,6 +56,33 @@
             UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Oops" message:error.description delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alertView show];
         }
+    }];
+}
+
+-(void)performExecute {
+    
+    _array = [NSMutableArray array];
+    
+    NSString *strSql = _textField.text;
+#if 0
+    strSql = @"insert into testTable values('Will', 'xinghen.hax@qq.com', 110)";
+    // @"delete from testTable where name = 'aaaaa'"
+#endif
+    
+    [[AFSQLManager sharedManager] performExecute:strSql withBlock:^(NSArray *row, NSError *error, BOOL finished) {
+        NSLog(@"%d", finished);
+        
+        [[AFSQLManager sharedManager] performQuery:@"select * from testTable" withBlock:^(NSArray *row, NSError *error, BOOL finished) {
+            
+            NSLog(@"%@", row);
+            if (!error) {
+                if (row)
+                    [_array addObject:row];
+            } else {
+                UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Oops" message:error.description delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [alertView show];
+            }
+        }];
     }];
 }
 
