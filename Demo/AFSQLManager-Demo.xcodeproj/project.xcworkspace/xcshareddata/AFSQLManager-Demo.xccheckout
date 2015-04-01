@@ -10,29 +10,29 @@
 	<string>AFSQLManager-Demo</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>9CA81C6E-E483-4947-B20D-B9A53E6A00F6</key>
-		<string>ssh://github.com/AlvaroFranco/AFSQLManager.git</string>
+		<key>8A02B9228ED7CF973078A22D49D5A0797525C9A4</key>
+		<string>https://github.com/xingheng/AFSQLManager.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Demo/AFSQLManager-Demo.xcodeproj/project.xcworkspace</string>
+	<string>Demo/AFSQLManager-Demo.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>9CA81C6E-E483-4947-B20D-B9A53E6A00F6</key>
+		<key>8A02B9228ED7CF973078A22D49D5A0797525C9A4</key>
 		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>ssh://github.com/AlvaroFranco/AFSQLManager.git</string>
+	<string>https://github.com/xingheng/AFSQLManager.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>9CA81C6E-E483-4947-B20D-B9A53E6A00F6</string>
+	<string>8A02B9228ED7CF973078A22D49D5A0797525C9A4</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>9CA81C6E-E483-4947-B20D-B9A53E6A00F6</string>
+			<string>8A02B9228ED7CF973078A22D49D5A0797525C9A4</string>
 			<key>IDESourceControlWCCName</key>
 			<string>AFSQLManager</string>
 		</dict>
