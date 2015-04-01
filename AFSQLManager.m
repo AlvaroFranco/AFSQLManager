@@ -123,7 +123,7 @@
             
             for (int i = 0; i < sqlite3_column_count(statement); i++) {
                 
-                [row addObject:((char *)sqlite3_column_text(statement, i)) ? [NSString stringWithUTF8String:(char *)sqlite3_column_text(statement, i)] : [NSNull null]];
+                [row addObject:((char *)sqlite3_column_text(statement, i)) ? ([NSString stringWithUTF8String:(char *)sqlite3_column_text(statement, i)] ?: [NSNull null]) : [NSNull null]];
             }
             
             if (completion) {
