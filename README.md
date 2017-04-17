@@ -10,7 +10,7 @@ SQL and SQLite database manage on iOS made easy. Create, open, rename and delete
 
 ![alt text](https://raw.github.com/AlvaroFranco/AFSQLManager/master/preview.gif "Preview")
 
-##Installation
+## Installation
 
 AFSQLManager is available on CocoaPods so you can get it by adding this line to your Podfile:
 	
@@ -23,15 +23,15 @@ If you don't use CocoaPods, you will have to import these files into your projec
 	
 Also, make sure to import ```libsqlite3.dylib``` library on the Frameworks section!
 
-##Usage
+## Usage
 
 First of all, make sure that you have imported the main class into the class where you are going to play audio.
 
 	#import "AFSQLManager.h"
 	
-###Managing the databases files
+### Managing the databases files
 
-#####Create a brand new database
+##### Create a brand new database
 
 To create a new file, use the method ```-createDatabaseWithName:openImmediately:withStatusBlock:```. Let's say you need to create a database called nyancat.sqlite:
 
@@ -46,7 +46,7 @@ To create a new file, use the method ```-createDatabaseWithName:openImmediately:
 
 You can also choose if the database should be opened once it's created.
     
-#####Open and closing an existing database
+##### Open and closing an existing database
 
 If you already have your database imported into your project, start using that database is as simple as use ```-openLocalDatabaseWithName:andStatusBlock:```
 
@@ -57,14 +57,14 @@ If you already have your database imported into your project, start using that d
     
 To close it, call ```-closeLocalDatabaseWithName:andStatusBlock:```
 
-#####Renaming and deleting
+##### Renaming and deleting
 
 To rename and delete your database, we have these two methods:
 
 	-renameDatabaseWithName:toName:andStatus:
 	-deleteDatabaseWithName:andStatus:
 		
-###Performing queries
+### Performing queries
 
 Queries are performed with the method ```-performQuery:withBlock:```, which is also block-based.
 
@@ -77,8 +77,8 @@ For example, if you want to look for all the items inside a table (which query i
     
 The block will be executed on every row, and it will contain an array (```row```) with each column in that row.
 
-##License
+## License
 AFSQLManager is under MIT license so feel free to use it!
 
-##Author
+## Author
 Made by Alvaro Franco. If you have any question, feel free to drop me a line at [alvarofrancoayala@gmail.com](mailto:alvarofrancoayala@gmail.com)
